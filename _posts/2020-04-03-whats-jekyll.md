@@ -6,7 +6,28 @@ title: Exploring MTA turnstile data
 To kick off our journey at [Metis](http://www.thisismetis.com), our project team was enlisted by the hypothetical group WomenTechWomenYes (WTWY) to help with their upcoming summer gala. Using public turnstile data from NYC's MTA subway system, we were tasked to make recommendations for their street team. Let's get started.
 
 ### Learning to think like a Data Scientist
+Before diving into the data, it was important for us to hone in on what questions exactly we are trying to answer. This means thinking about what can provide the most value to our client WTWY. Let's pick out some details from their initial contact:
 
-> Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.
+>[...] optimize the effectiveness of our street team work, which is a significant portion of our fundraising efforts. [...] As we are new and inclusive organization, [...] fill our event space with individuals passionate about increasing the participation of women in technology, and to concurrently build awareness and reach. [...] such that we can gather the most signatures, ideally from those who will attend the gala and contribute to our cause.
+
+Some potential takeaways:
+* The summer gala is very important to WTWY as it comprises a large part of their fundraising
+* WTWY self-describes as a "new organization". This may mean they are smaller, making it vital to allocate resources as efficiently as possible.
+* We want to maximize the number of signatures we can get
+* We want to get signatures from people who will attend the gala
+
+### The Dataset
+The data is publically available on the [MTA's webpage](http://web.mta.info/developers/turnstile.html). Each line of data gives us the following information:
+* Turnstile location - C/A, UNIT, SCP, STATION, LINENAME
+* Time - DATE, TIME
+* Foot traffic - ENTRIES, EXITS
+
+Cleaning the data, we can see that it was collected as a running counter, usually every 4 hours. By finding the difference in ENTRIES from the previous collection, we can determine how many new entries occured at a turnstile during a given time interval.
+
+We decided to look at data from the month of June 2019. This would give us an estimate of subway station foot traffic around the time leading up to when the summer gala is expected to occur. 
+
+### Insights
+
+![Image test]({{ site.url }}/images/station_total.png)
 
 It's an immensely useful tool. Find out more by [visiting the project on GitHub](https://github.com/jekyll/jekyll).
