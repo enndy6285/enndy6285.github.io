@@ -8,7 +8,7 @@ To kick off our journey at [Metis](http://www.thisismetis.com), our project team
 ### Learning to think like a Data Scientist
 Before diving into the data, it was important for us to hone in on what questions exactly we are trying to answer. This means thinking about what can provide the most value to our client WTWY. Let's pick out some details from their initial contact:
 
->[...] optimize the effectiveness of our street team work, which is a significant portion of our fundraising efforts. [...] As we are new and inclusive organization, [...] fill our event space with individuals passionate about increasing the participation of women in technology, and to concurrently build awareness and reach. [...] such that we can gather the most signatures, ideally from those who will attend the gala and contribute to our cause.
+>[...] optimize the effectiveness of our street team work, which is a **significant portion of our fundraising efforts**. [...] As we are **new and inclusive organization**, [...] fill our event space with individuals passionate about increasing the **participation of women in technology**, and to concurrently build awareness and reach. [...] such that we can gather the **most signatures, ideally from those who will attend the gala** and contribute to our cause.
 
 Some potential takeaways:
 * The summer gala is very important to WTWY as it comprises a large part of their fundraising
@@ -27,7 +27,12 @@ Cleaning the data, we can see that it was collected as a running counter, usuall
 We decided to look at data from the month of June 2019. This would give us an estimate of subway station foot traffic around the time leading up to when the summer gala is expected to occur. 
 
 ### Insights
+We first aggregated the data for the entire month to get total entries through each station. We can then sort to find the top overall stations by total foot traffic.
 
-![Image test]({{ site.url }}/images/station_total.png)
+![Total Station Entries]({{ site.url }}/images/station_total.png)
 
-It's an immensely useful tool. Find out more by [visiting the project on GitHub](https://github.com/jekyll/jekyll).
+Next we wanted to see how this varied over time. Breaking the data down by day of the week, it is clear traffic is higher on weekdays and drops significantly on the weekday. This pattern is consistent among all of our top stations.
+
+![Station Entries by Day of the Week]({{ site.url }}/images/station_DOF.png)
+
+![Top 7 Stations Heatmap]({{ site.url }}/images/station_top7_heatmap.png)
