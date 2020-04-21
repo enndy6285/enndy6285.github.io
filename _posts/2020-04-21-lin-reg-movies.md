@@ -17,7 +17,7 @@ Data was scraped from [BoxOfficeMojo](http://www.boxofficemojo.com) and [IMDB](h
 For a linear regression model to be successful, it must satisfy the assumptions of linear regression. As I learned throughout this project, this is very challenging in practice.
 
 
-#### Assumption - Linearity
+#### Assumption #1 - Linearity
 Ideally there is a linear relationship between the dependent and indepdent variables if we are trying to fit a linear regression model... 
 
 Unfortunately this poses some immediate challenges since we are dealing with price. Since box office earnings cannot not go below zero on the lower bound and can be infinitely high on the upper bound, this can cause linearity to break down. Looking at an initial plot of Actual vs Predicted values, we can see linear regression is not performing as well as we would hope.
@@ -35,61 +35,28 @@ Another challenge to assuming linearity between dependent and independent variab
 To account for this, all price related variables were adjusted for average yearly ticket price as a measure of price inflation over time.
 
 
-#### Assumption - Homoscedasticity
+#### Assumption #2 - Homoscedasticity
 Error terms should have constant variance. My initial model showed a very high degree of heterscedasticity with increasing variance at higher predicted values. Log transformation again helped in this case although we can see the variances are still not completely uniform.
 
 ![Residual Plot]({{ site.url }}/images/2020-04-21/resid.png)
 ![Residual Plot (log)]({{ site.url }}/images/2020-04-21/log_resid.png)
 
 
-#### Assumption - No Multi-Collinearity
+#### Assumption #3 - No Multi-Collinearity
 The independent variables should not have any linear relationships with each other. One of the movie features (Number of Theatres released) initially present in the model was eventually removed due to strong colinear effects with budget. This makes intuitive sense as a studio would want to release a movie that cost a lot of money to make in as many theatres as possible in order to maximize return on investment. This variable may have also had a dependent relationship on our dependent outcome since more theatres are likely to screen a movie that is already performing well.
 
 A degree of multi-collinearity was also introduced with the cast/crew independent variables. For these features, numerical values were calculated based on the box office earnings of previous movies that the cast/crew member in question had been involved in. This has some overlap with movie budget as more established actors/directors/writers would likely demand higher salaries.
 
 
-#### Assumption - Independence of Errors
+#### Assumption #4 - Independence of Errors
 This generally holds true since each observation is a different movie. Even though there were some time trends seen, the data does not represent a time series. This assumption does break down, however, when thinking about the effect of movie franchises which was not accounted for in the model. Some inter-dependence between observations was also introduced with the numerical cast/crew values created above.
 
 
-#### Assumption - Normality of Errors
+#### Assumption #5 - Normality of Errors
 Errors should follow a normal distribution. We can see this was followed fairly well in the error distribution plot below.
 
 ![Error Distribution]({{ site.url }}/images/2020-04-21/resid_hist.png)
 
 
-### Insights
-We first aggregated the data for the entire month to get total entries through each station. We can then sort to find the top overall stations by total foot traffic.
-
-
-![Total Station Entries]({{ site.url }}/images/station_total.png)
-
-
-Next we wanted to see how this varied over time. Breaking the data down by day of the week, it is clear traffic is higher on weekdays and drops significantly on the weekday. This pattern is consistent among all of our top stations.
-
-
-![Station Entries by Day of the Week]({{ site.url }}/images/station_DOF.png)
-
-
-Recalculating the total station entries during weekday onlys, the top stations remains almost the same, with Fulton St and 42 St-Port Authority swapping the 4th and 5th positions.
-
-
-![Total Station Entries on Weekdays]({{ site.url }}/images/station_total_weekdays.png)
-
-
-Each day can then further be broken by time of the day. We can now see that highest traffic occurs during the evening hours of 4-8 pm. Intuitively, this checks out as this would align with the return work commute.
-
-
-![Top 7 Stations Heatmap]({{ site.url }}/images/station_top7_heatmap.png)
-
-
-
-### Conclusions and Future Work
-Based on these results, we would recommend WTWY focus their resources at the following stations, on weekdays between 4 and 8pm.
-1. Grand Central and 42nd Street
-2. 34th Street and Herald Square
-3. 14th Street and Union Square
-4. Fulton Street
-5. 42nd Street and Port Authority
-
-Thinking more for our client, there is one aim that we haven't yet honed in on which would be great to explore in the future. Namely, how can we target NYC subway riders who are most likely to attend the gala? This would include looking into characteristics of previous gala attendees. We would also want to incorporate proximity data to see how these top stations relate geographically to major tech companies in NYC. Also, would there be value in sending team members to local universities to recruit students who are interested in the cause of women in tech? Just a few things we can explore next.
+### Conclusion
+In trying to model the domestic movie box office with linear regression, I learned that real world data rarely follows all of the assumptions of linear regression perfectly. I was not too surprised to see my final model have a very modest R-squared score of 0.43. Nevertheless, this project highlighted the importance of keeping the assumptions in mind not just during initial model selection but through the entire analytical process including feature selection and engineering.
