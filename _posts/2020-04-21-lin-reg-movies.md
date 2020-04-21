@@ -58,5 +58,13 @@ Errors should follow a normal distribution. We can see this was followed fairly 
 ![Error Distribution]({{ site.url }}/images/2020-04-21/resid_hist.png)
 
 
+### The Final Model
+After feature transformation and engineering, the data was modeled with cross-validation with simple OLS, Ridge, and Lasso regression. R-squared values were similar between all 3 models around 0.43. Insights from the model include:
+1. Budget had the largest impact with higher budgets predicting higher domestic gross
+2. The best months to release a movie are May, June, and July
+3. Director and writer had slightly more impact compared to actors on box office gross
+4. R-ratings predicted lower box office numbers
+
+
 ### Conclusion
 In trying to model the domestic movie box office with linear regression, I learned that real world data rarely follows all of the assumptions of linear regression perfectly. I was not too surprised to see my final model have a very modest R-squared score of 0.43. Nevertheless, this project highlighted the importance of keeping the assumptions in mind not just during initial model selection but through the entire analytical process including feature selection and engineering.
