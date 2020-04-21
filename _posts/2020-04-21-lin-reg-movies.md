@@ -16,12 +16,26 @@ Data was scraped from [BoxOfficeMojo](http://www.boxofficemojo.com) and [IMDB](h
 ### Linear Regression Modeling
 For a linear regression model to be successful, it must satisfy the assumptions of linear regression. As I learned throughout this project, this is very challenging in practice.
 
-#### Assumption #1 - Linearity
+#### Assumption - Linearity
 Ideally there is a linear relationship between the dependent and indepdent variables if we are trying to fit a linear regression model... 
 
 Unfortunately this poses some immediate challenges since we are dealing with price. Since box office earnings cannot not go below zero on the lower bound and can be infinitely high on the upper bound, this can cause linearity to break down. Looking at an initial plot of Actual vs Predicted values, we can see linear regression is not performing as well as we would hope.
 
 ![Actual vs. Predicted]({{ site.url }}/images/2020-04-21/actual_pred.png)
+
+One potential solution is to transform the data. In this case, all price related variables were log-transformed which improved the linear relationship.
+
+![Actual vs. Predicted (log)]({{ site.url }}/images/2020-04-21/log_act_pred.png)
+
+#### Assumption - Homoscedasticity
+Error terms should have constant variance. My initial model showed a very high degree of heterscedasticity with increasing variance at higher predicted values. Log transformation again helped in this case although we can see the variances are still not completely uniform.
+
+![Residual Plot]({{ site.url }}/images/2020-04-21/resid.png)
+![Residual Plot (log)]({{ site.url }}/images/2020-04-21/log_resid.png)
+
+#### Assumption - No Multi-Collinearity
+
+
 
 
 ### Insights
