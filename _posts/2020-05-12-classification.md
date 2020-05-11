@@ -1,10 +1,13 @@
 ---
 layout: post
-title: Introductory Look at Multi-Class Classification
+title: An Introductory Look at Multi-Class Classification
 ---
 
 ### Introduction
 For elite basketball players, the ultimate goal is to make it to the NBA. While the number of players, especially underclassmen, declaring for the draft is increasing every year, only 60 players will be lucky to start their professional careers through the NBA draft. The decision to declare for the draft is not always simple. There can be significant loss for those that go undrafted in the form of lost college eligibility. There is also a significant financial difference between going in the 1st round vs 2nd round. Therefore for these players, it is very important to know where they can expect to be drafted before making a decision.
+
+### Goal
+Create a classification model to predict where a college basketball player will go in the NBA draft.
 
 ### The Data
 Data was scraped using this [API](https://sportsreference.readthedocs.io/en/stable/) for [Sports-Reference.com](http://www.sports-reference.com) which includes yearly and career stats for all Division I college players. To filter this down, I created a list of players who had reasonable chances of being drafted. This prospects list was aggregated from several sources including previous NBA draft results, NBA pre-draft combine invites, lists of underclassmen who officially declared for the draft, and draft big board rankings from [NBADraft.net](https://www.nbadraft.net/ranking/bigboard/). The final dataset included players entering the draft from the years 2011 to 2019. Statistics from each player's most recent year in college was used in the analysis. 
@@ -48,7 +51,7 @@ Although the random forest model has slightly higher overall accuracy, it perfor
 
 ![Logistic Regression Confusion Matrix]({{ site.url }}/images/2020-05-12/lr_test_matrix.png)
 
-The final result is a classification model that prioritizes class 1 and class 3. In fact, it weights these 2 classes to the point that the model resembles binary classification with almost no predictions made for class 2. With more time, it would be interesting to see how the models would look taking different class weights into account.
+The final result is a classification model that prioritizes class 1 and class 3. In fact, it weights these 2 classes to the point that the model resembles binary classification with almost no predictions made for class 2. With more time, it would be interesting to see how the models would look with additional fine-tuning of class weights.
 
 ### Conclusion
 In order to properly evaluate a model, it is necessary to determine what metrics will be used for evaluation. This is especially true for multi-class problems which can be more difficult to summarize with a single measure. 
